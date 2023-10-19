@@ -20,7 +20,7 @@ exports.userRegistration = async (userData) => {
         resolve(userResponse);
       }
     } catch (error) {
-      reject(error?.meta?.target);
+      reject(error);
       console.log(error);
     }
   });
