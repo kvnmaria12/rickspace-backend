@@ -15,9 +15,13 @@ exports.registrationServie = async (req) => {
         ? await common.hashPassword(req.body.password, 11)
         : null;
       let insertResponse = await userRepo.userRegistration(userData);
-      resolve(insertResponse);
+      if (insertResponse) {
+        resolve(insertResponse);
+      } else {
+        reject(insertResponse);
+      }
     } catch (error) {
-      console.log(error);
+      reject(error);
     }
   });
 };
