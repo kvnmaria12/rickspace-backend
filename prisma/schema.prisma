@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = "mongodb+srv://rickspace:rickspace%401234@cluster0.luhaz2t.mongodb.net/rickspacedb"
 }
 
 
