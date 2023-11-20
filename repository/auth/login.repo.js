@@ -19,14 +19,11 @@ exports.loginRepo = async (req) => {
           ],
         },
       });
-
       if (findEmailAndMobile.length <= 0) {
         resolve('No_user_found');
       } else {
         resolve(findEmailAndMobile);
       }
-
-      resolve(findEmailAndMobile);
     } catch (error) {
       reject(error);
     }

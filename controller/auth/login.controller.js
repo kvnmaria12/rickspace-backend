@@ -10,6 +10,10 @@ exports.login = async (req, res) => {
       responseData.statusCode = 409;
       responseData.responseCode = 'NO_USER_FOUND';
       responseData.message = 'FAILED';
+    } else if (response == 'wrong_password') {
+      responseData.statusCode = 409;
+      responseData.responseCode = 'WRONG_PASSWORD';
+      responseData.message = 'FAILED';
     } else {
       responseData.statusCode = 200;
       responseData.responseCode = 'USER_FOUND';

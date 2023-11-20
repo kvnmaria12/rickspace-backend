@@ -8,16 +8,21 @@ exports.login = async (req) => {
     try {
       const { password } = req.body;
       const repoResponse = await loginRepository.loginRepo(req);
-      if (repoResponse) {
+      if (Array.isArray(repoResponse)) {
         const isPasswordEqual = await common.comparePassword(
           password,
           repoResponse[0].password
         );
+        if (isPasswordEqual) {
+          resolve(repoResponse);
+        } else {
+          resolve('wrong_password');
+        }
+      } else {
         resolve(repoResponse);
       }
     } catch (error) {
       reject(error);
-      console.log(error);
     }
   });
 };

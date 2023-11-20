@@ -28,7 +28,7 @@ module.exports = function () {
           if (result) {
             resolve(result);
           } else {
-            reject(err);
+            resolve(result);
           }
         });
       } catch (error) {
