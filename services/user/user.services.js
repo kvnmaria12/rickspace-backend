@@ -6,7 +6,7 @@ const common = new Common();
 // functionality
 // token generation
 
-exports.registrationServie = async (req) => {
+exports.registrationServie = async (req, res) => {
   return new Promise(async (resolve, reject) => {
     try {
       let userData = {};
@@ -21,6 +21,7 @@ exports.registrationServie = async (req) => {
         reject(insertResponse);
       }
     } catch (error) {
+      console.log('servives error', error);
       reject(error);
     }
   });

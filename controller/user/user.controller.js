@@ -7,15 +7,13 @@ exports.signUp = async (req, res) => {
     let response = {};
     let responseData = await userServices.registrationServie(req);
 
-    console.log(responseData);
-
-    if (responseData == 'User_email_key') {
+    if (responseData == 'email_exists') {
       response.statusCode = 409;
       response.responseCode = 'USER_EMAIL_EXISTS';
       response.message = 'FAILED';
-    } else if (responseData == 'User_mobileNo_key') {
+    } else if (responseData == 'mobileNo_exists') {
       response.statusCode = 409;
-      response.responseCode = 'USER_MOBILENO_EXISTS';
+      response.responseCode = 'MOBILE_NO_EXISTS';
       response.message = 'FAILED';
     } else {
       response.statusCode = 200;
@@ -23,6 +21,8 @@ exports.signUp = async (req, res) => {
       response.message = 'SUCCESS';
       response.data = responseData;
     }
+
+    // sending reponse to the front-end
     sendResponse.sendResponseObj(
       response.statusCode,
       response.responseCode,
