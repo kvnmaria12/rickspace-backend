@@ -22,14 +22,6 @@ exports.login = async (req, res) => {
       responseData.message,
       res
     );
-
-    // if (responseBody) {
-    //   const { userInfo, password } = responseBody;
-    //   res.json({
-    //     userInfo,
-    //     password,
-    //   });
-    // }
   } catch (error) {
     res.json({
       message: 'Error',

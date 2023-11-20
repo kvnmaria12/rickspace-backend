@@ -22,8 +22,6 @@ module.exports = function () {
   };
 
   this.comparePassword = function (userPassword, dbHash) {
-    console.log('userPassword', userPassword);
-    console.log('dbHash', dbHash);
     return new Promise((resolve, reject) => {
       try {
         bcrypt.compare(userPassword, dbHash, (err, result) => {
