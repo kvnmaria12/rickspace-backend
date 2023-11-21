@@ -1,4 +1,4 @@
-const userRepo = require('../../repository/user/user.repo');
+const userRepo = require('../../repository/signup/signup.repo');
 const Common = require('../../functions/common');
 
 const common = new Common();

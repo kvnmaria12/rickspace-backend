@@ -1,4 +1,4 @@
-const userServices = require('../../services/user/user.services');
+const userServices = require('../../services/signup/signup.services');
 const sendResponse = require('../../functions/response');
 // mainly used to response
 

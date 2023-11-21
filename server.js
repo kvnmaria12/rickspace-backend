@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
-const userApi = require('./routes/user/user.route');
+const userApi = require('./routes/signup/signup.route');
 const loginApi = require('./routes/login/login.route');
 
 const app = express();
