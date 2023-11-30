@@ -1,7 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
 
-// database queries
-
 const prisma = new PrismaClient();
 
 exports.userRegistration = async (userData) => {
