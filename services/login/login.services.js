@@ -1,4 +1,4 @@
-const loginRepository = require('../../repository/auth/login.repo');
+const loginRepository = require('../../repository/login/login.repo');
 const Common = require('../../functions/common');
 const jwt = require('jsonwebtoken');
 

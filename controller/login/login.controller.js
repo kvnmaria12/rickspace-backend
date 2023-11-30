@@ -1,4 +1,4 @@
-const loginService = require('../../services/auth/login.services');
+const loginService = require('../../services/login/login.services');
 const sendResponse = require('../../functions/response');
 
 const login = async (req, res) => {
