@@ -1,14 +1,27 @@
 const loginRepository = require('../../repository/auth/login.repo');
 const Common = require('../../functions/common');
+const jwt = require('jsonwebtoken');
 
 const common = new Common();
 
-exports.login = async (req) => {
+const login = async (req) => {
   return new Promise(async (resolve, reject) => {
     try {
       const { password } = req.body;
       const repoResponse = await loginRepository.loginRepo(req);
+      // console.log('repoResponse', repoResponse);
+
       if (Array.isArray(repoResponse)) {
+        const { email, name, mobileNo } = repoResponse[0];
+
+        const token = jwt.sign(
+          { email, name, mobileNo },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: '4h' }
+        );
+
+        repoResponse.token = token;
+
         const isPasswordEqual = await common.comparePassword(
           password,
           repoResponse[0].password
@@ -26,3 +39,5 @@ exports.login = async (req) => {
     }
   });
 };
+
+module.exports = login;

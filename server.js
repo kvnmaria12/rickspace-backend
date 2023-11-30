@@ -1,9 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const dotenv = require('dotenv');
 const compression = require('compression');
-const userApi = require('./routes/signup/signup.route');
+const signUpApi = require('./routes/signup/signup.route');
 const loginApi = require('./routes/login/login.route');
+const otpRoute = require('./routes/otp/otp.route');
+const postRoute = require('./routes/upload/upload.route');
+const authenticateToken = require('./functions/authenticateToken');
 
 const app = express();
 
@@ -11,18 +15,23 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-  res.send('Hello from Node js');
+dotenv.config();
+
+const PORT = process.env.PORT;
+
+app.get('/', authenticateToken, (req, res) => {
+  // res.send('Hello from Node js');
 });
 
-app.use('/api/v2', userApi);
-app.use('/api/v2', loginApi);
+app.use('/api/v2/auth/user', signUpApi);
+app.use('/api/v2/auth/user', loginApi);
+app.use('/api/v2/auth/otp', otpRoute);
+app.use('/api/v2/post', postRoute);
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log('server is listening at port 5000');
+app.listen(PORT || 7777, () => {
+  console.log(`server is listening at port ${PORT || 7777}`);
 });
 
 module.exports = app;

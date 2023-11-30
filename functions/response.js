@@ -1,4 +1,4 @@
-exports.sendResponseObj = (statusCode, responseCode, message, res, output) => {
+exports.sendResponseObj = (statusCode, responseCode, message, output, res) => {
   res.status(statusCode).json({
     responseCode: responseCode,
     message: message,

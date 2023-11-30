@@ -2,11 +2,10 @@ const userServices = require('../../services/signup/signup.services');
 const sendResponse = require('../../functions/response');
 // mainly used to response
 
-exports.signUp = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     let response = {};
     let responseData = await userServices.registrationServie(req);
-
     if (responseData == 'email_exists') {
       response.statusCode = 409;
       response.responseCode = 'USER_EMAIL_EXISTS';
@@ -16,7 +15,7 @@ exports.signUp = async (req, res) => {
       response.responseCode = 'MOBILE_NO_EXISTS';
       response.message = 'FAILED';
     } else {
-      response.statusCode = 200;
+      response.statusCode = 201;
       response.responseCode = 'USER_REGISTERED';
       response.message = 'SUCCESS';
       response.data = responseData;
@@ -27,8 +26,8 @@ exports.signUp = async (req, res) => {
       response.statusCode,
       response.responseCode,
       response.message,
-      res,
-      response.data
+      response.data,
+      res
     );
   } catch (error) {
     sendResponse.sendResponseObj(
@@ -40,3 +39,5 @@ exports.signUp = async (req, res) => {
     );
   }
 };
+
+module.exports = signUp;

@@ -1,34 +1,37 @@
 const loginService = require('../../services/auth/login.services');
 const sendResponse = require('../../functions/response');
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   try {
-    let responseData = {};
-    const response = await loginService.login(req);
+    let response = {};
+    const responseData = await loginService(req);
 
-    if (response == 'No_user_found') {
-      responseData.statusCode = 409;
-      responseData.responseCode = 'NO_USER_FOUND';
-      responseData.message = 'FAILED';
-    } else if (response == 'wrong_password') {
-      responseData.statusCode = 409;
-      responseData.responseCode = 'WRONG_PASSWORD';
-      responseData.message = 'FAILED';
+    if (responseData == 'No_user_found') {
+      response.statusCode = 409;
+      response.responseCode = 'NO_USER_FOUND';
+      response.message = 'FAILED';
+    } else if (responseData == 'wrong_password') {
+      response.statusCode = 409;
+      response.responseCode = 'WRONG_PASSWORD';
+      response.message = 'FAILED';
     } else {
-      responseData.statusCode = 200;
-      responseData.responseCode = 'USER_FOUND';
-      responseData.message = 'SUCCESS';
+      response.statusCode = 200;
+      response.responseCode = 'USER_FOUND';
+      response.message = 'SUCCESS';
+      response.data = responseData.token;
     }
-
     sendResponse.sendResponseObj(
-      responseData.statusCode,
-      responseData.responseCode,
-      responseData.message,
+      response.statusCode,
+      response.responseCode,
+      response.message,
+      response.data,
       res
     );
   } catch (error) {
     res.json({
-      message: 'Error',
+      message: error?.message,
     });
   }
 };
+
+module.exports = login;
