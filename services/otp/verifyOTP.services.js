@@ -1,17 +1,13 @@
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const VERIFY_SERVICE_SID = process.env.VERIFY_SERVICE_SID;
+const { serviceSid } = require('../../utils/twilio-env');
 
-const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, {
-  lazyLoading: true,
-});
+const twilioClient = require('../../utils/twilio-client');
 
 const verifyOTP = async (req, res) => {
   const { phoneNumber, otp } = req.body;
 
   try {
-    const verifyOTP = await client.verify.v2
-      .services(VERIFY_SERVICE_SID)
+    const verifyOTP = await twilioClient.verify.v2
+      .services(serviceSid)
       .verificationChecks.create({
         to: `+${phoneNumber}`,
         code: otp,
@@ -22,8 +18,6 @@ const verifyOTP = async (req, res) => {
     if (status == 'approved') {
       res.status(200).json({ Message: 'OTP Successfully Validated' });
     }
-
-    console.log('verifyOTP', verifyOTP);
   } catch (error) {
     console.log('error');
     res.status(400).json({ Message: 'Invalid OTP' });
