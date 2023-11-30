@@ -1,9 +1,8 @@
-const uploadService = require('../../services/upload/upload.services');
+const uploadService = require('../../services/file-upload/file-upload.services');
 
 const upload = async (req, res) => {
   try {
     const uploadReponse = await uploadService(req);
-    console.log('uploadResponse', uploadReponse);
     res.status(200).json({ message: 'Success' });
   } catch (error) {
     console.log('errro from upload controller', error);

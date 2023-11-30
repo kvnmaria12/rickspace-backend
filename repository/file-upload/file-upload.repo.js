@@ -1,6 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
 
-// database queries
 const prisma = new PrismaClient();
 
 const uploadFile = async (req) => {

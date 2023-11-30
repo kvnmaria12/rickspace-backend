@@ -6,7 +6,7 @@ const compression = require('compression');
 const signUpApi = require('./routes/signup/signup.route');
 const loginApi = require('./routes/login/login.route');
 const otpRoute = require('./routes/otp/otp.route');
-const postRoute = require('./routes/upload/upload.route');
+const postRoute = require('./routes/file-upload/file-upload.route');
 const authenticateToken = require('./functions/authenticateToken');
 
 const app = express();

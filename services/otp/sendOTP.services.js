@@ -13,7 +13,6 @@ const sendOTP = async (req, res) => {
       .services(VERIFY_SERVICE_SID)
       .verifications.create({ to: `+${phoneNumber}`, channel: 'sms' })
       .then((verfications) => {
-        console.log('verfications', verfications);
         res.status(200).json({ success: 'OTP sent successfully' });
       });
   } catch (error) {
