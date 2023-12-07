@@ -6,8 +6,11 @@ const compression = require('compression');
 const signUpApi = require('./routes/signup/signup.route');
 const loginApi = require('./routes/login/login.route');
 const otpRoute = require('./routes/otp/otp.route');
-const postRoute = require('./routes/file-upload/file-upload.route');
+const postRoute = require('./routes/AWS-File-Upload/file-upload/file-upload.route');
+const getAllPostRoute = require('./routes/AWS-File-Upload/get-posts/get-all-posts');
 const authenticateToken = require('./functions/authenticateToken');
+const fieldValidator = require('./controller/sampleValidator/fieldValidation');
+const validator = require('./validators/AWS/File-upload/file-upload');
 
 const app = express();
 
@@ -28,7 +31,8 @@ app.get('/', authenticateToken, (req, res) => {
 app.use('/api/v2/auth/user', signUpApi);
 app.use('/api/v2/auth/user', loginApi);
 app.use('/api/v2/auth/otp', otpRoute);
-app.use('/api/v2/post', postRoute);
+app.use('/api/v2/posts', postRoute);
+app.use('/api/v2/posts', getAllPostRoute);
 
 app.listen(PORT || 7777, () => {
   console.log(`server is listening at port ${PORT || 7777}`);

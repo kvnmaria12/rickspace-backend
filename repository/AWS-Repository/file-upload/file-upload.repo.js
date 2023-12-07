@@ -2,13 +2,17 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const uploadFile = async (req) => {
+let CLOUDFRONTCDNURL = 'https://d377pmctxnwbuz.cloudfront.net/';
+
+const uploadFile = async (req, imageName) => {
   try {
-    const { imageURL, title, description } = req.body;
+    CLOUDFRONTCDNURL = CLOUDFRONTCDNURL + imageName;
+    const { id, title, description } = req.body;
     const fileUploadResponse = await prisma.post.create({
       data: {
-        authorId: '656592cb745c23b4855a3ec4',
-        imageURL: imageURL,
+        authorId: id,
+        imageName: imageName,
+        postURL: CLOUDFRONTCDNURL,
         title: title,
         description: description,
       },
