@@ -6,6 +6,8 @@ const getAllPostsRepo = async (req) => {
   try {
     const { authorId } = req.body;
 
+    console.log('authorId', authorId);
+
     const posts = await prisma.user.findMany({
       where: {
         id: authorId,
