@@ -3,6 +3,6 @@ const getPostsController = require('../../../controller/AWS-File-Upload/get-post
 const router = express.Router();
 const getAllFileValidator = require('../../../validators/AWS/getFile/get-file');
 
-router.post('/all-posts', getAllFileValidator, getPostsController);
+router.post('/all-posts', getPostsController);
 
 module.exports = router;
