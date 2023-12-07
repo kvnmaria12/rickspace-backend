@@ -22,8 +22,6 @@ const upload = async (req) => {
 
     const fileType = mimetype.split('/')[0];
 
-    console.log('req File', req.file);
-
     if (fileType != 'image' && fileType != 'video') {
       return {
         error: 'File type must be either image or video',
@@ -51,8 +49,6 @@ const upload = async (req) => {
 
     const command = new PutObjectCommand(params);
     const response = await s3.send(command);
-
-    console.log('AWS Response', response['$metadata']?.httpStatusCode);
 
     const awsSuccessCode = response['$metadata']?.httpStatusCode;
 

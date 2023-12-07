@@ -3,7 +3,6 @@ const uploadService = require('../../../services/AWS-Services/file-upload/file-u
 const upload = async (req, res) => {
   try {
     const uploadReponse = await uploadService(req);
-    console.log('uploadResponse', uploadReponse);
     if (uploadReponse && uploadReponse?.code !== 400) {
       res.status(200).json(uploadReponse);
     } else if (uploadReponse?.code == 400) {
