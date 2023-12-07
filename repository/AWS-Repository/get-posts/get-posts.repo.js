@@ -5,11 +5,7 @@ const prisma = new PrismaClient();
 const getAllPostsRepo = async (req) => {
   try {
     const { authorId } = req.body;
-    const posts = await prisma.post.findMany({
-      where: {
-        authorId: '6554bc364777c04eb484e6fa',
-      },
-    });
+    const posts = await prisma.post.findRaw();
     console.log('posts', posts);
     return posts;
   } catch (error) {
