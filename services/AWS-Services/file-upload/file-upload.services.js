@@ -9,7 +9,6 @@ const {
   secretAccessKey,
 } = require('../../../utils/s3-env');
 const randomImageName = require('../../../utils/randomImageName');
-const sharp = require('sharp');
 
 const s3 = S3Config(accessKey, secretAccessKey, bucketRegion);
 
@@ -29,21 +28,10 @@ const upload = async (req) => {
       };
     }
 
-    let shrinkedBuffer;
-    if (fileType == 'image') {
-      shrinkedBuffer = await sharp(buffer)
-        .resize({
-          height: 1920,
-          width: 1080,
-          fit: 'contain',
-        })
-        .toBuffer();
-    }
-
     const params = {
       Bucket: bucketName,
       Key: imageName,
-      Body: shrinkedBuffer || buffer,
+      Body: buffer,
       ContentType: mimetype,
     };
 
