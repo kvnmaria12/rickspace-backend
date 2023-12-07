@@ -8,7 +8,7 @@ const getAllPostsRepo = async (req) => {
 
     const posts = await prisma.user.findMany({
       where: {
-        id: '6554bc364777c04eb484e6fa',
+        id: authorId,
       },
       include: {
         post: true,
