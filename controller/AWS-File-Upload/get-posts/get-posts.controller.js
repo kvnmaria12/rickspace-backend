@@ -6,6 +6,7 @@ const getAllPost = async (req, res) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
       const allPostService = await getPostService(req);
+      console.log('allPostService', allPostService);
       if (allPostService && allPostService.length) {
         res.status(200).json({ posts: allPostService });
       } else {

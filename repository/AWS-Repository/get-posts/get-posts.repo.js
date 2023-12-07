@@ -13,6 +13,7 @@ const getAllPostsRepo = async (req) => {
     console.log('posts', posts);
     return posts;
   } catch (error) {
+    console.log('error --->', error?.message);
     return error?.code;
   }
 };
