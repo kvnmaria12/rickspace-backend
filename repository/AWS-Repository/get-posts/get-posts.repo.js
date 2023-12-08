@@ -6,17 +6,7 @@ const getAllPostsRepo = async (req) => {
   try {
     const { authorId } = req.body;
 
-    const posts = await prisma.likes.findMany({
-      // where: {
-      //   id: authorId,
-      // },
-      // include: {
-      //   post: true,
-      // },
-      where: {
-        authorId: authorId,
-      },
-    });
+    const posts = await prisma.menu.findMany();
     console.log('posts', posts);
     return posts;
   } catch (error) {

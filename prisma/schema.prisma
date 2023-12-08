@@ -42,3 +42,8 @@ model Likes{
 }
 
 
+model Menu{
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  str String
+}
+
