@@ -17,21 +17,10 @@ model User {
   name    String
   mobileNo String @unique
   password String
-  likes Likes[]
+  post Post[]
 }
 
-// model Post{
-//   id       String @id @default(auto()) @map("_id") @db.ObjectId
-//   author   User   @relation(fields: [authorId], references: [id])
-//   authorId String @db.ObjectId
-//   imageName String
-//   postURL String @default("")
-//   title String
-//   description String
-// }
-
-
-model Likes{
+model Post{
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   author   User   @relation(fields: [authorId], references: [id])
   authorId String @db.ObjectId
@@ -42,8 +31,5 @@ model Likes{
 }
 
 
-model Menu{
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  str String
-}
+
 
