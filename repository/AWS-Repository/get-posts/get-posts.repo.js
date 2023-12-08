@@ -6,7 +6,7 @@ const getAllPostsRepo = async (req) => {
   try {
     const { authorId } = req.body;
 
-    const posts = await prisma.post.findMany({
+    const posts = await prisma.likes.findMany({
       // where: {
       //   id: authorId,
       // },
