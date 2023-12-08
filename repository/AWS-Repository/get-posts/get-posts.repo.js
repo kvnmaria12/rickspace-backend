@@ -14,8 +14,8 @@ const getAllPostsRepo = async (req) => {
         post: true,
       },
     });
-    console.log('posts', posts[0]?.post);
-    return posts[0]?.post;
+    console.log('posts', posts);
+    return posts;
   } catch (error) {
     console.log('error --->', error);
     return error?.code;
