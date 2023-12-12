@@ -1,4 +1,4 @@
-const { body } = require('express-validator');
+const body = require('../../../utils/express-body');
 
 const getFileValidator = [
   body('authorId')

@@ -1,7 +1,5 @@
-### File Upload
+### Rest Password
 
-# 1. Handle all user input
+# 1. Check if OTP is verified
 
-# 2. If user input is not the return the respective field missing
-
-# 3.
+# 2. If verified

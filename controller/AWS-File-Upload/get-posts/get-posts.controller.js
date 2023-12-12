@@ -12,7 +12,7 @@ const getAllPost = async (req, res) => {
         res.status(400).json({ message: 'Invalid user Id' });
       }
     } else {
-      res.status(412).json({ errors: errors.array()?.[0] });
+      res.status(412).json({ error: errors.array()?.[0].msg });
     }
   } catch (error) {
     res.status(500).json({ error: error?.message });
