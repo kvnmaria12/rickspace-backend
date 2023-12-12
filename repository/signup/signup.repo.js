@@ -16,8 +16,7 @@ exports.userRegistration = async (userData) => {
       console.log(userValue);
 
       if (userValue.length > 0) {
-        if (userValue.includes('@')) {
-          logger.info('includes@');
+        if (userValue[0].includes('@')) {
           resolve('email_exists');
         } else {
           resolve('mobileNo_exists');
