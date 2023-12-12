@@ -1,6 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
 const NodeCache = require('node-cache');
-const logger = require('../../utils/logger');
 const myCache = new NodeCache();
 
 const prisma = new PrismaClient();
@@ -12,8 +11,6 @@ exports.userRegistration = async (userData) => {
 
       // let userValue = logger.info(userValue);
       const userValue = Object.keys(myCache.mget([email, mobileNo]));
-
-      console.log(userValue);
 
       if (userValue.length > 0) {
         if (userValue[0].includes('@')) {
@@ -54,7 +51,6 @@ exports.userRegistration = async (userData) => {
               password: userData.password,
             },
           });
-          console.log('userResponse', userResponse);
           if (userResponse) {
             // storing in node cache
             const { name, email, password } = userResponse;
@@ -68,7 +64,6 @@ exports.userRegistration = async (userData) => {
               { key: email, val: userInfo, ttl: 0 },
               { key: mobileNo, val: userInfo, ttl: 0 },
             ]);
-            logger.info(cacheResponse);
           }
           resolve(userResponse);
         }
