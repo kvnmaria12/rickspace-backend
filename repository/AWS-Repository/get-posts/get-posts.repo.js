@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const logger = require('../../../utils/logger');
 
 const prisma = new PrismaClient();
 
@@ -12,7 +13,7 @@ const getAllPostsRepo = async (req) => {
     });
     return posts;
   } catch (error) {
-    console.log('error --->', error);
+    logger.error('error from get-post-repo --->', error);
     return error?.code;
   }
 };
