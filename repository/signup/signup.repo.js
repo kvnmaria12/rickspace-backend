@@ -1,74 +1,48 @@
 const { PrismaClient } = require('@prisma/client');
-const NodeCache = require('node-cache');
-const myCache = new NodeCache();
-
 const prisma = new PrismaClient();
 
 exports.userRegistration = async (userData) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const { name, email, mobileNo, password } = userData;
+      const { email, mobileNo } = userData;
 
-      // let userValue = logger.info(userValue);
-      const userValue = Object.keys(myCache.mget([email, mobileNo]));
+      const findEmailAndMobile = await prisma.user.findMany({
+        where: {
+          OR: [
+            {
+              email: email,
+            },
+            {
+              mobileNo: mobileNo,
+            },
+          ],
+        },
+      });
 
-      if (userValue.length > 0) {
-        if (userValue[0].includes('@')) {
+      if (findEmailAndMobile.length) {
+        console.log(findEmailAndMobile);
+        const email = findEmailAndMobile[0].email;
+        const mobileNo = findEmailAndMobile[0].mobileNo;
+
+        if (email == userData.email) {
           resolve('email_exists');
-        } else {
+        }
+        if (mobileNo == userData.mobileNo) {
           resolve('mobileNo_exists');
         }
       } else {
-        const findEmailAndMobile = await prisma.user.findMany({
-          where: {
-            OR: [
-              {
-                email: userData.email,
-              },
-              {
-                mobileNo: userData.mobileNo,
-              },
-            ],
+        const userResponse = await prisma.user.create({
+          data: {
+            name: userData.name,
+            email: userData.email,
+            mobileNo: userData.mobileNo,
+            password: userData.password,
           },
         });
-
-        if (findEmailAndMobile.length) {
-          const email = findEmailAndMobile[0].email;
-          const mobileNo = findEmailAndMobile[0].mobileNo;
-
-          if (email == userData.email) {
-            resolve('email_exists');
-          }
-          if (mobileNo == userData.mobileNo) {
-            resolve('mobileNo_exists');
-          }
-        } else {
-          const userResponse = await prisma.user.create({
-            data: {
-              name: userData.name,
-              email: userData.email,
-              mobileNo: userData.mobileNo,
-              password: userData.password,
-            },
-          });
-          if (userResponse) {
-            // storing in node cache
-            const { name, email, password } = userResponse;
-            const userInfo = {
-              name,
-              email,
-              mobileNo,
-              password,
-            };
-            const cacheResponse = myCache.mset([
-              { key: email, val: userInfo, ttl: 0 },
-              { key: mobileNo, val: userInfo, ttl: 0 },
-            ]);
-          }
+        if (userResponse) {
           resolve(userResponse);
         }
       }
-      myCache.close();
     } catch (error) {
       reject(error);
       console.log('error', error);

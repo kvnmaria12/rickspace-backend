@@ -2,4 +2,4 @@
 
 # 1. Check if OTP is verified
 
-# 2. If verified
+# 2. If verified reset password
