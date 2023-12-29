@@ -3,11 +3,11 @@ const primsa = require('../../utils/prisma-client');
 
 const resetPasswordRepo = async (req) => {
   try {
-    const { id, password } = req.body;
+    const { mobileNo, password } = req.body;
 
     const updatePassword = await primsa.user.update({
       where: {
-        id: id,
+        mobileNo: mobileNo,
       },
       data: {
         password: password,

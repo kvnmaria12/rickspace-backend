@@ -1,11 +1,11 @@
 const body = require('../../../utils/express-body');
 
 const resetPasswordValidator = [
-  body('id')
+  body('mobileNo')
     .notEmpty()
-    .withMessage('id cannot be empty')
+    .withMessage('mobileNo cannot be empty')
     .isString()
-    .withMessage('id must be a String'),
+    .withMessage('mobileNo must be a String'),
   body('password')
     .notEmpty()
     .withMessage('password cannot be empty')
