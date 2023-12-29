@@ -11,6 +11,8 @@ const resetPassword = async (req, res) => {
         return res
           .status(200)
           .json({ message: 'Password Updated Successfully' });
+      } else {
+        return res.status(400).json({ message: 'Mobile No Does Not Exists' });
       }
     } else {
       return res.status(412).json({ error: errors.array()?.[0].msg });
