@@ -12,11 +12,10 @@ const randomImageName = require('../../../utils/randomImageName');
 
 const s3 = S3Config(accessKey, secretAccessKey, bucketRegion);
 
-// randomeImageName
-const imageName = randomImageName();
-
 const upload = async (req) => {
   try {
+    const imageName = randomImageName();
+
     const { buffer, mimetype } = req.file;
 
     const fileType = mimetype.split('/')[0];
