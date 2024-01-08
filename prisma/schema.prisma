@@ -28,6 +28,7 @@ model Post{
   postURL String @default("")
   title String
   description String
+  fileType String
 }
 
 

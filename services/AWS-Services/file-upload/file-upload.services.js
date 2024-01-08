@@ -40,7 +40,7 @@ const upload = async (req) => {
     const awsSuccessCode = response['$metadata']?.httpStatusCode;
 
     // adding the imageName into the request body;
-    const uploadResponse = await uploadRepo(req, imageName);
+    const uploadResponse = await uploadRepo(req, imageName, mimetype);
 
     if (awsSuccessCode && uploadResponse) {
       return { message: 'File Uploaded Successfully' };

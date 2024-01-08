@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const uploadFile = async (req, imageName) => {
+const uploadFile = async (req, imageName, mimetype) => {
   try {
     let CLOUDFRONTCDNURL = 'https://d377pmctxnwbuz.cloudfront.net/';
     CLOUDFRONTCDNURL = CLOUDFRONTCDNURL + imageName;
@@ -14,6 +14,7 @@ const uploadFile = async (req, imageName) => {
         postURL: CLOUDFRONTCDNURL,
         title: title,
         description: description,
+        fileType: mimetype,
       },
     });
     return fileUploadResponse;
