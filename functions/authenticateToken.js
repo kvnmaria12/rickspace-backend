@@ -6,7 +6,7 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
-      res.status(401).json({
+      return res.status(401).json({
         message: 'Not Authenticated',
       });
     }
@@ -15,4 +15,4 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-module.exports = authenticateToken;
+module.exports = { authenticateToken };

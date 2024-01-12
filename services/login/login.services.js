@@ -10,13 +10,11 @@ const login = async (req) => {
     const repoResponse = await loginRepository.loginRepo(req);
 
     if (Array.isArray(repoResponse)) {
-      const { email, name, mobileNo } = repoResponse[0];
+      const { email, id } = repoResponse[0];
 
-      const token = jwt.sign(
-        { email, name, mobileNo },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '4h' }
-      );
+      const token = jwt.sign({ email, id }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: '4h',
+      });
 
       repoResponse.token = token;
 
