@@ -25,7 +25,7 @@ const resetPasswordRepo = async (req) => {
     });
     return updatePassword;
   } catch (error) {
-    logger.warn(`resetPasswrdRepo --> ${error}`);
+    logger.warn(`resetPasswrdRepo --> ${error.message}`);
   }
 };
 

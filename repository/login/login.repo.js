@@ -1,6 +1,8 @@
-const { PrismaClient } = require('@prisma/client');
+// const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+
+const prisma = require('../../utils/prisma-client');
 
 exports.loginRepo = async (req) => {
   const requestBody = req.body;

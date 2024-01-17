@@ -18,6 +18,7 @@ model User {
   mobileNo String @unique
   password String
   post Post[]
+  following String[] @default([])
 }
 
 model Post{
@@ -30,7 +31,4 @@ model Post{
   description String
   fileType String
 }
-
-
-
 
