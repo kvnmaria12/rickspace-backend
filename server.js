@@ -14,6 +14,7 @@ const {
   getAllPostRoute,
   restPasswordRoute,
   followRoute,
+  unFollowRoute,
 } = require('./utils/file-exports');
 
 const app = express();
@@ -41,6 +42,7 @@ app.use('/api/v2/auth/otp', otpRoute);
 app.use('/api/v2/post', authenticateToken, postRoute);
 app.use('/api/v2/posts', authenticateToken, getAllPostRoute);
 app.use('/api/v2/user', followRoute);
+app.use('/api/v2/user', unFollowRoute);
 
 app.listen(PORT || 7777, () => {
   console.log(`server is listening at port ${PORT || 7777}`);

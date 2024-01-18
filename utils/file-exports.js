@@ -5,6 +5,8 @@ const postRoute = require('../routes/AWS-File-Upload/file-upload/file-upload.rou
 const getAllPostRoute = require('../routes/AWS-File-Upload/get-posts/get-all-posts');
 const restPasswordRoute = require('../routes/reset-password/reset-password.route');
 const followRoute = require('../routes/follow/follow.route');
+const unFollowRoute = require('../routes/un-follow/un-follow.route');
+
 module.exports = {
   signUpApi,
   loginApi,
@@ -13,4 +15,5 @@ module.exports = {
   getAllPostRoute,
   restPasswordRoute,
   followRoute,
+  unFollowRoute,
 };
