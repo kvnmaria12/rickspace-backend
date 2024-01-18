@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
-// app.use(limiter);
+app.use(limiter);
 
 dotenv.config();
 
