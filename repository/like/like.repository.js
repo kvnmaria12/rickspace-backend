@@ -12,24 +12,7 @@ const likeRepo = async (req) => {
         likeCount: 1,
       },
     });
-
-    let listofLikeUserIds = [];
-    const getPostsLikedUsers = await prisma.likes.findMany({
-      where: {
-        postId: postId,
-      },
-    });
-    console.log(getPostsLikedUsers);
-    listofLikeUserIds = getPostsLikedUsers.map((likes) => likes.authorId);
-    console.log(listofLikeUserIds);
-
-    const getListofUsers = await prisma.user.findMany({
-      where: {
-        id: { in: listofLikeUserIds },
-      },
-    });
-
-    console.log(getListofUsers);
+    return response;
   } catch (error) {
     logger.warn(`likeRepo --> ${error.message}`);
     return error?.message;
