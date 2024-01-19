@@ -10,6 +10,9 @@ const getAllPostsRepo = async (req) => {
       where: {
         authorId: authorId,
       },
+      include: {
+        likes: true,
+      },
     });
     return posts;
   } catch (error) {

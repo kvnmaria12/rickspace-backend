@@ -18,8 +18,8 @@ const followRepo = async (req) => {
       return response;
     }
   } catch (error) {
-    return error;
     logger.warn(`resetPasswrdRepo --> ${error.message}`);
+    return error?.message;
   }
 };
 

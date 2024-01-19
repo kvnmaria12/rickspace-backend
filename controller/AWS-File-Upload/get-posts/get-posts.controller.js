@@ -9,7 +9,7 @@ const getAllPost = async (req, res) => {
       if (allPostService && allPostService.length) {
         res.status(200).json({ posts: allPostService });
       } else {
-        res.status(400).json({ message: 'Invalid user Id' });
+        res.status(400).json({ message: 'No Posts Found' });
       }
     } else {
       res.status(412).json({ error: errors.array()?.[0].msg });

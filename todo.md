@@ -1,5 +1,3 @@
-### Rest Password
+### Like Functionality
 
-# 1. Check if OTP is verified
-
-# 2. If verified reset password
+## Don't forget to add authentication middleware to each and every route

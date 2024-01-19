@@ -15,6 +15,7 @@ const {
   restPasswordRoute,
   followRoute,
   unFollowRoute,
+  likeRoute,
 } = require('./utils/file-exports');
 
 const app = express();
@@ -39,10 +40,11 @@ app.use('/api/v2/auth/user', signUpApi);
 app.use('/api/v2/auth/user', loginApi);
 app.use('/api/v2/auth/user', authenticateToken, restPasswordRoute);
 app.use('/api/v2/auth/otp', otpRoute);
-app.use('/api/v2/post', authenticateToken, postRoute);
-app.use('/api/v2/posts', authenticateToken, getAllPostRoute);
+app.use('/api/v2/post', postRoute);
+app.use('/api/v2/posts', getAllPostRoute);
 app.use('/api/v2/user', followRoute);
 app.use('/api/v2/user', unFollowRoute);
+app.use('/api/v2/user', likeRoute);
 
 app.listen(PORT || 7777, () => {
   console.log(`server is listening at port ${PORT || 7777}`);
