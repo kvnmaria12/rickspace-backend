@@ -1,4 +1,4 @@
-const unLikeRepo = require('../../repository/un-like/un-like.repository');
+const unLikeRepo = require('../../repository/dis-like/dis-like.repository');
 const logger = require('../../utils/logger');
 
 const unLikeServices = async (req) => {
