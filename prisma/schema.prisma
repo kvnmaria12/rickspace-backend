@@ -33,10 +33,10 @@ model Post{
 }
 
 model Likes{
-id       String @id @default(auto()) @map("_id") @db.ObjectId
+id     String @id @default(auto()) @map("_id") @db.ObjectId
 post Post   @relation(fields: [postId], references: [id])
 postId String @db.ObjectId
-authorId String
+authorId  String
 likeCount Int
 }
 

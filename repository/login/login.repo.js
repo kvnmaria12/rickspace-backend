@@ -1,7 +1,3 @@
-// const { PrismaClient } = require('@prisma/client');
-
-// const prisma = new PrismaClient();
-
 const prisma = require('../../utils/prisma-client');
 
 exports.loginRepo = async (req) => {
@@ -20,6 +16,8 @@ exports.loginRepo = async (req) => {
         ],
       },
     });
+
+    await prisma.$disconnect();
 
     if (findEmailAndMobile.length <= 0) {
       return 'No_user_found';

@@ -16,6 +16,7 @@ const {
   followRoute,
   unFollowRoute,
   likeRoute,
+  unLikeRoute,
 } = require('./utils/file-exports');
 
 const app = express();
@@ -45,9 +46,10 @@ app.use('/api/v2/posts', getAllPostRoute);
 app.use('/api/v2/user', followRoute);
 app.use('/api/v2/user', unFollowRoute);
 app.use('/api/v2/user', likeRoute);
+app.use('/api/v2/user', unLikeRoute);
 
-app.listen(PORT || 7777, () => {
-  console.log(`server is listening at port ${PORT || 7777}`);
+app.listen(PORT || 7779, () => {
+  console.log(`server is listening at port ${PORT || 7779}`);
 });
 
 module.exports = app;

@@ -7,6 +7,7 @@ const restPasswordRoute = require('../routes/reset-password/reset-password.route
 const followRoute = require('../routes/follow/follow.route');
 const unFollowRoute = require('../routes/un-follow/un-follow.route');
 const likeRoute = require('../routes/like/like.route');
+const unLikeRoute = require('../routes/un-like/un-like.route');
 
 module.exports = {
   signUpApi,
@@ -18,4 +19,5 @@ module.exports = {
   followRoute,
   unFollowRoute,
   likeRoute,
+  unLikeRoute,
 };
