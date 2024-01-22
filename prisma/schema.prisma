@@ -18,6 +18,7 @@ model User {
   mobileNo String @unique
   password String
   post Post[]
+  follower Followers[]
 }
 
 model Post{
@@ -40,3 +41,11 @@ authorId  String
 likeCount Int
 }
 
+
+
+model Followers{
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  follower User @relation(fields: [authorId], references: [id])
+  authorId  String @db.ObjectId
+  followerId String 
+}
