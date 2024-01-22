@@ -1,7 +1,7 @@
 const body = require('../../../utils/express-body');
 
 const getFileValidator = [
-  body('authorId')
+  body('userId')
     .notEmpty()
     .withMessage('id cannot be empty')
     .isString()

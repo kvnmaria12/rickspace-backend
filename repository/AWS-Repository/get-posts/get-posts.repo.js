@@ -5,16 +5,27 @@ const prisma = new PrismaClient();
 
 const getAllPostsRepo = async (req) => {
   try {
-    const { authorId } = req.body;
-    const posts = await prisma.post.findMany({
+    const { userId } = req.body;
+    const userInfo = await prisma.user.findUnique({
       where: {
-        authorId: authorId,
+        id: userId,
       },
       include: {
-        likes: true,
+        following: true,
       },
     });
-    return posts;
+
+    if (userId) {
+      let followersIds;
+      followersIds = userInfo.following.map((follower) => follower.followerId);
+
+      const followersPost = await prisma.post.findMany({
+        where: {
+          authorId: { in: followersIds },
+        },
+      });
+      return followersPost;
+    }
   } catch (error) {
     logger.error('error from get-post-repo --->', error);
     return error?.code;

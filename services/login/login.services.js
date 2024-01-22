@@ -9,12 +9,14 @@ const login = async (req) => {
     const { password } = req.body;
     const repoResponse = await loginRepository.loginRepo(req);
 
-    if (repoResponse) {
-      const { email, id, password: dbPassword } = repoResponse.results[0];
+    if (Array.isArray(repoResponse)) {
+      const { email, id, password: dbPassword } = repoResponse[0];
 
       const token = jwt.sign({ email, id }, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: '4h',
       });
+
+      console.log('token', token);
 
       repoResponse.token = token;
 
@@ -23,7 +25,6 @@ const login = async (req) => {
         dbPassword
       );
       if (isPasswordEqual) {
-        console.log(isPasswordEqual);
         return repoResponse;
       } else {
         return 'wrong_password';
