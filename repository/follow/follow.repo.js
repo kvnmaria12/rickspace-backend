@@ -3,20 +3,16 @@ const logger = require('../../utils/logger');
 
 const followRepo = async (req) => {
   try {
-    const { userId, followerId } = req.body;
-    const response = await primsa.user.update({
-      where: {
-        id: userId,
-      },
+    const { authorId, followerId } = req.body;
+
+    const dbResponse = await primsa.followers.create({
       data: {
-        following: {
-          push: followerId,
-        },
+        authorId: authorId,
+        followerId: followerId,
       },
     });
-    if (response) {
-      return response;
-    }
+    console.log(dbResponse);
+    return dbResponse;
   } catch (error) {
     logger.warn(`resetPasswrdRepo --> ${error.message}`);
     return error?.message;

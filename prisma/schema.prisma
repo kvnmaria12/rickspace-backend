@@ -17,14 +17,15 @@ model User {
   name    String
   mobileNo String @unique
   password String
-  post Post[]
-  follower Followers[]
+  posts Post[]
+  following Followers[]
 }
 
 model Post{
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   author   User   @relation(fields: [authorId], references: [id])
   authorId String @db.ObjectId
+  authorName String
   imageName String
   postURL String @default("")
   title String

@@ -1,32 +1,19 @@
 const loginService = require('../../services/login/login.services');
-const sendResponse = require('../../functions/response');
 
 const login = async (req, res) => {
   try {
-    let response = {};
     const responseData = await loginService(req);
-
     if (responseData == 'No_user_found') {
-      response.statusCode = 409;
-      response.responseCode = 'NO_USER_FOUND';
-      response.message = 'FAILED';
+      res.status(409).json({ message: 'No User Found' });
     } else if (responseData == 'wrong_password') {
-      response.statusCode = 409;
-      response.responseCode = 'WRONG_PASSWORD';
-      response.message = 'FAILED';
+      res.status(409).json({ message: 'Wrong Password' });
     } else {
-      response.statusCode = 200;
-      response.responseCode = 'USER_FOUND';
-      response.message = 'SUCCESS';
-      response.data = responseData.token;
+      res.status(200).json({
+        message: 'SUCCESS',
+        token: responseData.token,
+        responseData,
+      });
     }
-    sendResponse.sendResponseObj(
-      response.statusCode,
-      response.responseCode,
-      response.message,
-      response.data,
-      res
-    );
   } catch (error) {
     res.json({
       message: error?.message,
