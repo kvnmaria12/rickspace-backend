@@ -23,6 +23,9 @@ const getAllPostsRepo = async (req) => {
         where: {
           authorId: { in: followersIds },
         },
+        include: {
+          likes: true,
+        },
       });
       return followersPost;
     }

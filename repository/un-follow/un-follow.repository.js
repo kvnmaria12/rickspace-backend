@@ -4,24 +4,19 @@ const primsa = require('../../utils/prisma-client');
 const unFollowRepository = async (req) => {
   try {
     const { userId, followerId } = req.body;
-
-    const users = await primsa.user.findUnique({
+    const users = await primsa.followers.findMany({
       where: {
-        id: userId,
+        authorId: userId,
       },
     });
-
-    const updateUsers = users.following.filter((data) => data != followerId);
-
-    const updateDb = await primsa.user.update({
+    const filteredUsers = users.filter((user) => user.followerId == followerId);
+    const { id } = filteredUsers[0];
+    const deleteFollower = await primsa.followers.delete({
       where: {
-        id: userId,
-      },
-      data: {
-        following: updateUsers,
+        id: id,
       },
     });
-    return updateDb;
+    return deleteFollower;
   } catch (error) {
     logger.warn(`unFollowRepo--> ${error?.message}`);
     return error;
