@@ -17,6 +17,7 @@ const {
   unFollowRoute,
   likeRoute,
   disLikeRoute,
+  commentsRoute,
 } = require('./utils/file-exports');
 
 const app = express();
@@ -47,6 +48,7 @@ app.use('/api/v2/user', followRoute);
 app.use('/api/v2/user', unFollowRoute);
 app.use('/api/v2/user/post', likeRoute);
 app.use('/api/v2/user/post', disLikeRoute);
+app.use('/api/v2/post/', commentsRoute);
 
 app.listen(PORT || 7779, () => {
   console.log(`server is listening at port ${PORT || 7779}`);

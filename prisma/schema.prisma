@@ -32,6 +32,7 @@ model Post{
   description String
   fileType String
   likes Likes[]
+  comments Comments[]
 }
 
 model Likes{
@@ -49,4 +50,13 @@ model Followers{
   follower User @relation(fields: [authorId], references: [id])
   authorId  String @db.ObjectId
   followerId String 
+}
+
+
+model Comments{
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  post Post @relation(fields: [postId], references: [id])
+  postId String @db.ObjectId
+  authorId String
+  comment String
 }
