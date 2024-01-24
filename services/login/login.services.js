@@ -16,8 +16,6 @@ const login = async (req) => {
         expiresIn: '4h',
       });
 
-      console.log('token', token);
-
       repoResponse.token = token;
 
       const isPasswordEqual = await common.comparePassword(

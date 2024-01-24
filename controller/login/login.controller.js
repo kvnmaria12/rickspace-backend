@@ -3,7 +3,8 @@ const loginService = require('../../services/login/login.services');
 const login = async (req, res) => {
   try {
     const responseData = await loginService(req);
-    console.log(responseData);
+    const { name, email, mobileNo } = responseData[0];
+
     if (responseData == 'No_user_found') {
       res.status(409).json({ message: 'No User Found' });
     } else if (responseData == 'wrong_password') {
@@ -12,7 +13,7 @@ const login = async (req, res) => {
       res.status(200).json({
         message: 'SUCCESS',
         token: responseData.token,
-        results: responseData,
+        results: { name, email, mobileNo },
       });
     }
   } catch (error) {
