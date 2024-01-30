@@ -25,6 +25,7 @@ const getAllPostsRepo = async (req) => {
         },
         include: {
           likes: true,
+          comments: true,
         },
       });
       return followersPost;
