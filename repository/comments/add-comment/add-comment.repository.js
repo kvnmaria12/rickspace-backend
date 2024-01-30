@@ -13,7 +13,6 @@ const addCommetRepo = async (req) => {
       },
     });
 
-    console.log(addComments);
     return addComments;
   } catch (error) {
     logger.warn(`commentsRepo -> ${error?.message}`);
