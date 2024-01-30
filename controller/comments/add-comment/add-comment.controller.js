@@ -1,7 +1,7 @@
-const commentsService = require('../../services/comments/comments.services');
-const logger = require('../../utils/logger');
+const commentsService = require('../../../services/comments/add-comment/add-comment.services');
+const logger = require('../../../utils/logger');
 
-const commentsController = async (req, res) => {
+const addCommentController = async (req, res) => {
   try {
     const response = await commentsService(req);
     if (response) {
@@ -13,4 +13,4 @@ const commentsController = async (req, res) => {
   }
 };
 
-module.exports = commentsController;
+module.exports = addCommentController;

@@ -1,7 +1,7 @@
-const logger = require('../../utils/logger');
-const primsa = require('../../utils/prisma-client');
+const logger = require('../../../utils/logger');
+const primsa = require('../../../utils/prisma-client');
 
-const commentsRepo = async (req) => {
+const addCommetRepo = async (req) => {
   try {
     const { postId, authorId, comment } = req.body;
     const addComments = await primsa.comments.create({
@@ -20,4 +20,4 @@ const commentsRepo = async (req) => {
   }
 };
 
-module.exports = commentsRepo;
+module.exports = addCommetRepo;
