@@ -7,7 +7,7 @@ const addCommentService = async (req) => {
     return repoResponse;
   } catch (error) {
     logger.warn(`commentsService -> ${error?.message}`);
-    return error;
+    return error?.message;
   }
 };
 
