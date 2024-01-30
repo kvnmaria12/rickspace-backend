@@ -1,4 +1,3 @@
-const { get } = require('../../routes/reset-password/reset-password.route');
 const logger = require('../../utils/logger');
 const primsa = require('../../utils/prisma-client');
 

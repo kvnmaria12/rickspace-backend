@@ -50,6 +50,8 @@ app.use('/api/v2/user/post', likeRoute);
 app.use('/api/v2/user/post', disLikeRoute);
 app.use('/api/v2/post/', commentsRoute);
 
+process.on('warning', (e) => console.warn(e.stack));
+
 app.listen(PORT || 7779, () => {
   console.log(`server is listening at port ${PORT || 7779}`);
 });
