@@ -4,7 +4,6 @@ const prisma = require('../../../utils/prisma-client');
 const addCommetRepo = async (req) => {
   try {
     const { postId, authorId, comment } = req.body;
-
     const addComments = await prisma.comments.create({
       data: {
         postId: postId,
@@ -12,7 +11,6 @@ const addCommetRepo = async (req) => {
         comment: comment,
       },
     });
-
     return addComments;
   } catch (error) {
     logger.warn(`commentsRepo -> ${error?.message}`);
