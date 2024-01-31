@@ -1,5 +1,5 @@
-const prisma = require('../../utils/prisma-client');
 const logger = require('../../utils/logger');
+const prisma = require('../../utils/prisma-client');
 
 const likeRepo = async (req) => {
   try {

@@ -1,4 +1,4 @@
-const deleteCommentService = () => {
+const deleteCommentService = async () => {
   try {
   } catch (error) {}
 };

@@ -1,11 +1,11 @@
-const primsa = require('../../utils/prisma-client');
 const logger = require('../../utils/logger');
+const prisma = require('../../utils/prisma-client');
 
 const followRepo = async (req) => {
   try {
     const { authorId, followerId } = req.body;
 
-    const dbResponse = await primsa.followers.create({
+    const dbResponse = await prisma.followers.create({
       data: {
         authorId: authorId,
         followerId: followerId,

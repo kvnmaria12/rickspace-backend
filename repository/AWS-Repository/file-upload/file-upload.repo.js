@@ -1,6 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-
-const prisma = new PrismaClient();
+const prisma = require('../../../utils/prisma-client');
 
 const uploadFile = async (req, imageName, mimetype) => {
   try {

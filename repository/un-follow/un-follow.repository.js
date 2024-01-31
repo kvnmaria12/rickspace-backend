@@ -1,17 +1,17 @@
 const logger = require('../../utils/logger');
-const primsa = require('../../utils/prisma-client');
+const prisma = require('../../utils/prisma-client');
 
 const unFollowRepository = async (req) => {
   try {
     const { userId, followerId } = req.body;
-    const users = await primsa.followers.findMany({
+    const users = await prisma.followers.findMany({
       where: {
         authorId: userId,
       },
     });
     const filteredUsers = users.filter((user) => user.followerId == followerId);
     const { id } = filteredUsers[0];
-    const deleteFollower = await primsa.followers.delete({
+    const deleteFollower = await prisma.followers.delete({
       where: {
         id: id,
       },

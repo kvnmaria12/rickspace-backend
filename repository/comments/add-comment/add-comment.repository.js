@@ -1,11 +1,11 @@
 const logger = require('../../../utils/logger');
-const primsa = require('../../../utils/prisma-client');
+const prisma = require('../../../utils/prisma-client');
 
 const addCommetRepo = async (req) => {
   try {
     const { postId, authorId, comment } = req.body;
 
-    const addComments = await primsa.comments.create({
+    const addComments = await prisma.comments.create({
       data: {
         postId: postId,
         authorId: authorId,

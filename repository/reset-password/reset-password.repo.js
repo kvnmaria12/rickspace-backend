@@ -1,11 +1,11 @@
 const logger = require('../../utils/logger');
-const primsa = require('../../utils/prisma-client');
+const prisma = require('../../utils/prisma-client');
 
 const resetPasswordRepo = async (req) => {
   try {
     const { mobileNo, password } = req.body;
 
-    const getMobileNo = await primsa.user.findUnique({
+    const getMobileNo = await prisma.user.findUnique({
       where: {
         mobileNo: mobileNo,
       },
@@ -14,7 +14,7 @@ const resetPasswordRepo = async (req) => {
     if (!getMobileNo) {
       return undefined;
     }
-    const updatePassword = await primsa.user.update({
+    const updatePassword = await prisma.user.update({
       where: {
         mobileNo: mobileNo,
       },
