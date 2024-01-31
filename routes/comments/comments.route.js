@@ -5,8 +5,11 @@ const updateCommentController = require('../../controller/comments/update-commen
 const commentValidator = require('../../validators/Comment/add-comment');
 const deleteCommentController = require('../../controller/comments/delete-comment/delete-comment.controller');
 const updateCommentValidator = require('../../validators/Comment/update-comment');
+const getAllCommentsController = require('../../controller/comments/all-comments/all-comments.controller');
 
 router.post('/add-comment', commentValidator, addCommentController);
 router.post('/update-comment', updateCommentValidator, updateCommentController);
 router.delete('/delete-comment/', deleteCommentController);
+router.post('/all-comments', getAllCommentsController);
+
 module.exports = router;
