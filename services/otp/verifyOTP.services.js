@@ -15,13 +15,15 @@ const verifyOTP = async (req, res) => {
 
     const { status, valid } = verifyOTP;
 
+    if (status == 'pending') {
+      return res.status(401).json({ message: 'Invalid OTP' });
+    }
     if (status == 'approved') {
-      res.status(200).json({ Message: 'OTP Successfully Validated' });
+      return res.status(200).json({ Message: 'OTP Successfully Validated' });
     }
   } catch (error) {
     console.log('error');
-    res.status(400).json({ Message: 'Invalid OTP' });
-    // res.status(500).json({ error: error });
+    return res.status(500).json({ message: error?.message });
   }
 };
 
