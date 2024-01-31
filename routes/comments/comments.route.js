@@ -8,5 +8,5 @@ const updateCommentValidator = require('../../validators/Comment/update-comment'
 
 router.post('/add-comment', commentValidator, addCommentController);
 router.post('/update-comment', updateCommentValidator, updateCommentController);
-router.delete('/delete-comment', deleteCommentController);
+router.delete('/delete-comment/', deleteCommentController);
 module.exports = router;
