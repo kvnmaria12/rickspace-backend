@@ -4,9 +4,10 @@ const logger = require('../../../utils/logger');
 const getAllCommentsController = async (req, res) => {
   try {
     const response = await getAllCommentsService(req);
-    if (response) {
-      return res.status(200).json({ message: 'all comments fetched' });
+    if (response.length) {
+      return res.status(200).json({ comments: response });
     }
+    return res.status(200).json({ comments: response });
   } catch (error) {
     logger.warn(`allCommentsController${error?.message}`);
     return res.status(500).json({ message: error?.message });
