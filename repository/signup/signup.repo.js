@@ -19,7 +19,6 @@ exports.userRegistration = async (userData) => {
       });
 
       if (findEmailAndMobile.length) {
-        console.log(findEmailAndMobile);
         const email = findEmailAndMobile[0].email;
         const mobileNo = findEmailAndMobile[0].mobileNo;
 

@@ -4,17 +4,21 @@ const prisma = require('../../../utils/prisma-client');
 const deleteCommentRepo = async (req) => {
   try {
     const { authorId, postId } = req.body;
-    const deleteComment = await prisma.comments.delete({
+    const getAllComments = await prisma.comments.findMany({
       where: {
         postId: postId,
-        AND: [
-          {
-            authorId: authorId,
-          },
-        ],
       },
     });
-    console.log(deleteComment);
+    const filterDeleteComment = getAllComments.filter(
+      (comment) => comment.authorId == authorId
+    );
+    const { id } = filterDeleteComment[0];
+    const deleteComment = await prisma.comments.delete({
+      where: {
+        id: id,
+      },
+    });
+    return deleteComment;
   } catch (error) {
     logger.warn(`deleteCommentRepo ${error?.message}`);
     return error?.message;

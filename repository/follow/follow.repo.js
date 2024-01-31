@@ -11,7 +11,7 @@ const followRepo = async (req) => {
         followerId: followerId,
       },
     });
-    console.log(dbResponse);
+
     return dbResponse;
   } catch (error) {
     logger.warn(`resetPasswrdRepo --> ${error.message}`);
