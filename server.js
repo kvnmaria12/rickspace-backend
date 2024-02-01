@@ -40,7 +40,7 @@ app.get('/', authenticateToken, (req, res) => {
 
 app.use('/api/v2/auth/user', signUpApi);
 app.use('/api/v2/auth/user', loginApi);
-app.use('/api/v2/auth/user', authenticateToken, restPasswordRoute);
+app.use('/api/v2/auth/user', restPasswordRoute);
 app.use('/api/v2/auth/otp', otpRoute);
 app.use('/api/v2/post', postRoute);
 app.use('/api/v2/posts', getAllPostRoute);
