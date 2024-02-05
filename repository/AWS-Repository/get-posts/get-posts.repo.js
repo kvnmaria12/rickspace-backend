@@ -17,7 +17,7 @@ const getAllPostsRepo = async (req) => {
       let followersIds;
       followersIds = userInfo.following.map((follower) => follower.followerId);
 
-      const followersPost = await prisma.post.findMany({
+      const followersPosts = await prisma.post.findMany({
         where: {
           authorId: { in: followersIds },
         },
@@ -26,7 +26,13 @@ const getAllPostsRepo = async (req) => {
           comments: true,
         },
       });
-      return followersPost;
+
+      const updatedFollowersPosts = followersPosts.map((post) => ({
+        ...post,
+        isFollowed: true,
+      }));
+
+      return updatedFollowersPosts;
     }
   } catch (error) {
     logger.error('error from get-post-repo --->', error);
