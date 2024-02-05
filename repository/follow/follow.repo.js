@@ -3,7 +3,15 @@ const prisma = require('../../utils/prisma-client');
 
 const followRepo = async (req) => {
   try {
-    const { authorId, followerId } = req.body;
+    const { authorId, postId } = req.body;
+
+    const getUserId = await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+
+    const { authorId: followerId } = getUserId;
 
     const dbResponse = await prisma.followers.create({
       data: {

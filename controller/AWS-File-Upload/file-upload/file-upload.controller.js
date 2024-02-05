@@ -8,11 +8,11 @@ const upload = async (req, res) => {
 
     const { id, title, description } = req.body;
 
-    if (id == undefined) {
+    if (id == undefined || '') {
       return res.status(400).json({ message: 'id is required' });
-    } else if (title == undefined) {
+    } else if (title == undefined || '') {
       return res.status(400).json({ message: 'title is required' });
-    } else if (description == undefined) {
+    } else if (description == undefined || '') {
       return res.status(400).json({ message: 'description is required' });
     }
 
