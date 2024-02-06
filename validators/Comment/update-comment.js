@@ -1,4 +1,4 @@
-const body = require('../../utils/express-body');
+const { body, query } = require('../../utils/express-body');
 
 const updateCommentValidator = [
   body('authorId')

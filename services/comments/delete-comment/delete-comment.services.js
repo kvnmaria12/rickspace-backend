@@ -9,7 +9,7 @@ const deleteCommentService = async (req) => {
     }
   } catch (error) {
     logger.warn(`deleteCommentService ${error?.message}`);
-    return error?.message;
+    return error;
   }
 };
 

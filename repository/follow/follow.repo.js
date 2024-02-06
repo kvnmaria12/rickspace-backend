@@ -3,22 +3,35 @@ const prisma = require('../../utils/prisma-client');
 
 const followRepo = async (req) => {
   try {
-    const { authorId, postId } = req.body;
+    const { authorId, postId, userId } = req.query;
 
-    const getUserId = await prisma.post.findUnique({
-      where: {
-        id: postId,
-      },
-    });
+    let getUserId;
+    if (!userId) {
+      getUserId = await prisma.post.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+    }
 
-    const { authorId: followerId } = getUserId;
+    let dbResponse;
 
-    const dbResponse = await prisma.followers.create({
-      data: {
-        authorId: authorId,
-        followerId: followerId,
-      },
-    });
+    if (typeof getUserId == 'object' && !Array.isArray(getUserId)) {
+      const { authorId: followerId } = getUserId;
+      dbResponse = await prisma.followers.create({
+        data: {
+          authorId: authorId,
+          followerId: followerId,
+        },
+      });
+    } else {
+      dbResponse = await prisma.followers.create({
+        data: {
+          authorId: authorId,
+          followerId: userId,
+        },
+      });
+    }
 
     return dbResponse;
   } catch (error) {

@@ -9,6 +9,7 @@ const unFollowRoute = require('../routes/un-follow/un-follow.route');
 const likeRoute = require('../routes/like/like.route');
 const disLikeRoute = require('../routes/dis-like/dis-like.route');
 const commentsRoute = require('../routes/comments/comments.route');
+const allUsersRoute = require('../routes/all-users/all-users.route');
 
 module.exports = {
   signUpApi,
@@ -22,4 +23,5 @@ module.exports = {
   likeRoute,
   disLikeRoute,
   commentsRoute,
+  allUsersRoute,
 };
