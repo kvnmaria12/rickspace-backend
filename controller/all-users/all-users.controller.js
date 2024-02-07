@@ -5,7 +5,7 @@ const allUsersController = async (req, res) => {
   try {
     const response = await allUsersServices(req);
     if (response) {
-      return res.status(200).json({ data: response });
+      return res.status(200).json({ results: response });
     }
     return res.status(500).json({ message: 'Server Error' });
   } catch (error) {
