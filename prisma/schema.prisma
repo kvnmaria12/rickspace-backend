@@ -19,6 +19,7 @@ model User {
   password String
   posts Post[]
   following Followers[]
+  savedPosts SavedPost[]
 }
 
 model Post{
@@ -33,6 +34,7 @@ model Post{
   fileType String
   likes Likes[]
   comments Comments[]
+  
 }
 
 model Likes{
@@ -59,4 +61,17 @@ model Comments{
   postId String @db.ObjectId
   authorId String
   comment String
+}
+
+
+model SavedPost{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  author User @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+  postId String
+  authorName String
+  imageName String
+  postURL String @default("")
+  title String
+  description String
 }

@@ -19,6 +19,7 @@ const {
   disLikeRoute,
   commentsRoute,
   allUsersRoute,
+  savePostRoute,
 } = require('./utils/file-exports');
 
 const app = express();
@@ -51,6 +52,7 @@ app.use('/api/v2/user/post', likeRoute);
 app.use('/api/v2/user/post', disLikeRoute);
 app.use('/api/v2/post', commentsRoute);
 app.use('/api/v2/users', allUsersRoute);
+app.use('/api/v2/post', savePostRoute);
 
 process.on('warning', (e) => console.warn(e.stack));
 

@@ -2,17 +2,17 @@ const uploadService = require('../../../services/AWS-Services/file-upload/file-u
 
 const upload = async (req, res) => {
   try {
-    if (req.file == undefined) {
+    if (req.file == undefined || req.file == '') {
       return res.status(400).json({ messge: 'File is missing' });
     }
 
     const { id, title, description } = req.body;
 
-    if (id == undefined || '') {
+    if (id == undefined || id == '') {
       return res.status(400).json({ message: 'id is required' });
-    } else if (title == undefined || '') {
+    } else if (title == undefined || title == '') {
       return res.status(400).json({ message: 'title is required' });
-    } else if (description == undefined || '') {
+    } else if (description == undefined || description == '') {
       return res.status(400).json({ message: 'description is required' });
     }
 

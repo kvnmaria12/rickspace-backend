@@ -1,6 +1,5 @@
 const uploadRepo = require('../../../repository/AWS-Repository/file-upload/file-upload.repo');
 const { PutObjectCommand } = require('@aws-sdk/client-s3');
-// const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const S3Config = require('../../../utils/s3Config');
 const {
   bucketName,
