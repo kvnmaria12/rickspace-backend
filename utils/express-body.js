@@ -1,3 +1,3 @@
-const { body, query } = require('express-validator');
+const { body } = require('express-validator');
 
-module.exports = { body, query };
+module.exports = { body };

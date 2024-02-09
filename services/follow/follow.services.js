@@ -6,8 +6,7 @@ const followService = async (req) => {
     const repoResponse = await followRepo(req);
     return repoResponse;
   } catch (error) {
-    logger.warn(`error from get-post-service ---> ${error.message}`);
-    return error;
+    throw new Error(`error from get-post-service ${error.message}`);
   }
 };
 

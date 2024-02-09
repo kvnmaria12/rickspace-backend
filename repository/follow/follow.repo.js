@@ -35,8 +35,7 @@ const followRepo = async (req) => {
 
     return dbResponse;
   } catch (error) {
-    logger.warn(`resetPasswrdRepo --> ${error.message}`);
-    return error?.message;
+    throw new Error(`error from get-post-service ${error.message}`);
   }
 };
 

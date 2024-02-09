@@ -24,6 +24,7 @@ const savePostRepository = async (req) => {
         title,
       },
     });
+    bnm;
     return dbReponse;
   } catch (error) {
     logger.warn(`savePostRepository${error?.message}`);

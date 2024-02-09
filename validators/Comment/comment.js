@@ -1,6 +1,6 @@
 const { body } = require('../../utils/express-body');
 
-const addCommentValidator = [
+const commentValidator = [
   body('authorId')
     .notEmpty()
     .withMessage('authorId cannot be empty')
@@ -20,4 +20,4 @@ const addCommentValidator = [
     .withMessage('comment must be a String'),
 ];
 
-module.exports = addCommentValidator;
+module.exports = commentValidator;
