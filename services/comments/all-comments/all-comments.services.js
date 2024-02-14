@@ -7,6 +7,7 @@ const getAllCommentsService = async (req) => {
     return repoResponse;
   } catch (error) {
     logger.warn(`allCommentsService  ${error?.message}`);
+    throw new Error(`allCommentService ${error?.message}`);
     return error?.message;
   }
 };

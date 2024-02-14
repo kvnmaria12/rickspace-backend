@@ -5,11 +5,11 @@ const { validationResult } = require('express-validator');
 const addCommentController = async (req, res) => {
   try {
     const errors = validationResult(req);
-    const response = await commentsService(req);
+    await commentsService(req);
     if (errors.isEmpty()) {
       return res.status(200).json({ message: 'commented successfully' });
     } else {
-      return res.status(412).json({ error: errors.array()?.[0].msg });
+      return res.status(412).json({ error: errors.array()?.[0]?.msg });
     }
   } catch (error) {
     logger.warn(`commentsControler -> ${error?.message}`);

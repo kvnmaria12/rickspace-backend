@@ -1,5 +1,5 @@
-const getAllPostsRepo = require('../../../repository/AWS-Repository/get-posts/get-posts.repo');
-const logger = require('../../../utils/logger');
+const getAllPostsRepo = require('../../repository/get-posts/get-posts.repo');
+const logger = require('../../utils/logger');
 
 const getPostService = async (req) => {
   try {

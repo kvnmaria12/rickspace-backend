@@ -1,4 +1,4 @@
-const getPostService = require('../../../services/AWS-Services/get-posts/get-posts.services');
+const getPostService = require('../../services/get-posts/get-posts.services');
 const { validationResult } = require('express-validator');
 
 const getAllPost = async (req, res) => {

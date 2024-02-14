@@ -1,13 +1,13 @@
-const uploadRepo = require('../../../repository/AWS-Repository/file-upload/file-upload.repo');
+const uploadRepo = require('../../repository/file-upload/file-upload.repo');
 const { PutObjectCommand } = require('@aws-sdk/client-s3');
-const S3Config = require('../../../utils/s3Config');
+const S3Config = require('../../utils/s3Config');
 const {
   bucketName,
   bucketRegion,
   accessKey,
   secretAccessKey,
-} = require('../../../utils/s3-env');
-const randomImageName = require('../../../utils/randomImageName');
+} = require('../../utils/s3-env');
+const randomImageName = require('../../utils/randomImageName');
 
 const s3 = S3Config(accessKey, secretAccessKey, bucketRegion);
 
@@ -47,7 +47,7 @@ const upload = async (req) => {
 
     return uploadResponse;
   } catch (error) {
-    console.log('error Message', error?.message);
+    throw new Error(`file-upload-service ${error?.message}`);
     return {
       error: error?.message,
     };

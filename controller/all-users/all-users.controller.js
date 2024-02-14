@@ -3,7 +3,8 @@ const logger = require('../../utils/logger');
 
 const allUsersController = async (req, res) => {
   try {
-    const response = await allUsersServices(req);
+    const response = await allUsersServices();
+
     if (response) {
       return res.status(200).json({ results: response });
     }

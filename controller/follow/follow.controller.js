@@ -2,19 +2,33 @@ const followService = require('../../services/follow/follow.services');
 
 const followController = async (req, res) => {
   try {
-    const { authorId, postId, userId } = req.query;
+    const { authorId, postId, followerId } = req.query;
 
     if (typeof authorId == 'undefined') {
       return res.status(400).json({ message: 'authorId is required' });
     }
-    if (typeof userId == 'undefined') {
-      if (typeof postId == 'undefined') {
+
+    if (typeof postId == 'undefined' && typeof followerId == 'undefined') {
+      return res
+        .status(400)
+        .json({ message: 'Either postId or followerId is required' });
+    }
+
+    if (postId) {
+      if (typeof authorId == 'undefined') {
+        return res.status(400).json({ message: 'authorId is required' });
+      } else if (typeof postId == 'undefined') {
         return res.status(400).json({ message: 'postId is required' });
       }
     }
-    if (typeof postId == 'undefined') {
-      if (typeof userId == 'undefined') {
-        return res.status(400).json({ message: 'userId is required' });
+
+    if (followerId) {
+      console.log('followerId', followerId);
+
+      if (typeof authorId == 'undefined') {
+        return res.status(400).json({ message: 'authorId is required' });
+      } else if (typeof followerId == 'undefined') {
+        return res.status(400).json({ message: 'followerId is required' });
       }
     }
 

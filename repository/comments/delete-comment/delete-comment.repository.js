@@ -25,6 +25,7 @@ const deleteCommentRepo = async (req) => {
     return deleteComment;
   } catch (error) {
     logger.warn(`deleteCommentRepo ${error?.message}`);
+    throw new Error(`deleteCommentRepo ${error?.message}`);
     return error;
   }
 };

@@ -1,4 +1,4 @@
-const prisma = require('../../../utils/prisma-client');
+const prisma = require('../../utils/prisma-client');
 
 const uploadFile = async (req, imageName, mimetype) => {
   try {
@@ -18,6 +18,7 @@ const uploadFile = async (req, imageName, mimetype) => {
     });
     return fileUploadResponse;
   } catch (error) {
+    throw new Error(`file-upload-repo ${error?.message}`);
     return {
       error: error?.message,
     };

@@ -13,6 +13,7 @@ const getAllCommentsRepo = async (req) => {
     return reponse;
   } catch (error) {
     logger.warn(`getAllCommentRepo ${error?.message}`);
+    throw new Error(`getAllCommentsRepo ${error?.message}`);
     return error?.message;
   }
 };

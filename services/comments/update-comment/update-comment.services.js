@@ -9,6 +9,7 @@ const updateCommentService = async (req) => {
     }
   } catch (error) {
     logger.warn(`update-comment-repo-service ${error?.message}`);
+    throw new Error();
     return error?.message;
   }
 };
